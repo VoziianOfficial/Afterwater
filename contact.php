@@ -1,8 +1,10 @@
 <?php
+
 declare(strict_types=1);
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
-function respond(int $status, bool $success, string $message): never {
+function respond(int $status, bool $success, string $message): never
+{
     http_response_code($status);
     echo json_encode(['success' => $success, 'message' => $message], JSON_UNESCAPED_UNICODE);
     exit;
