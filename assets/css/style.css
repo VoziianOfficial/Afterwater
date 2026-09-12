@@ -381,21 +381,62 @@ header {
 
 .desktop-nav {
     display: flex;
-    gap: 32px;
+    gap: 6px;
     align-items: center;
     margin-left: auto;
+    padding: 7px;
     font-size: 13px;
-    font-weight: 600
+    font-weight: 750;
+    line-height: 1;
+    background: linear-gradient(135deg, #f8fbfd, #edf6fc);
+    border: 1px solid #d6e8f3;
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 #fff, 0 10px 24px #23496310
 }
 
 .desktop-nav>a,
 .nav-drop>a {
-    padding: 20px 0;
-    transition: color .25s
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    color: #34414c;
+    overflow: hidden;
+    transition: color .25s, background .25s, box-shadow .25s, transform .25s
+}
+
+.desktop-nav>a:before,
+.nav-drop>a:before {
+    content: '';
+    position: absolute;
+    inset: 5px 8px auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    opacity: 0;
+    transition: opacity .25s
+}
+
+.desktop-nav>a:hover,
+.desktop-nav>a:focus-visible,
+.nav-drop:hover>a,
+.nav-drop:focus-within>a {
+    color: var(--blue-dark);
+    background: #fff;
+    box-shadow: 0 7px 16px #1d719f14, inset 0 0 0 1px #b9def4;
+    transform: translateY(-1px)
+}
+
+.desktop-nav>a:hover:before,
+.desktop-nav>a:focus-visible:before,
+.nav-drop:hover>a:before,
+.nav-drop:focus-within>a:before {
+    opacity: .9
 }
 
 .desktop-nav a:hover {
-    color: var(--blue)
+    color: var(--blue-dark)
 }
 
 .nav-drop {
@@ -403,29 +444,43 @@ header {
 }
 
 .nav-drop>a {
-    display: flex;
-    align-items: center;
     gap: 6px
 }
 
 .nav-drop svg {
-    width: 13px
+    width: 13px;
+    transition: transform .25s
+}
+
+.nav-drop:hover>a svg,
+.nav-drop:focus-within>a svg {
+    transform: rotate(180deg)
+}
+
+.nav-drop:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 14px
 }
 
 .nav-drop>div {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 14px);
     left: -22px;
-    width: 240px;
-    background: white;
-    padding: 12px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 12px 25px #28384817;
-    transform: translateY(10px);
+    width: 260px;
+    background: linear-gradient(180deg, #fff, #f6fbfe);
+    padding: 10px;
+    border: 1px solid #c7e1f1;
+    border-radius: 16px;
+    box-shadow: 0 22px 45px #20374a20, inset 0 1px 0 #fff;
+    transform: translateY(8px) scale(.98);
+    transform-origin: top left;
     opacity: 0;
     visibility: hidden;
-    transition: .25s
+    transition: opacity .25s, transform .25s, visibility .25s
 }
 
 .nav-drop:hover>div,
@@ -436,13 +491,20 @@ header {
 }
 
 .nav-drop>div a {
-    display: block;
-    padding: 10px;
-    border-radius: 6px
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 13px;
+    border-radius: 10px;
+    color: #394956;
+    transition: background .25s, color .25s, transform .25s, box-shadow .25s
 }
 
 .nav-drop>div a:hover {
-    background: var(--blue-pale)
+    color: var(--blue-dark);
+    background: #e4f4fd;
+    box-shadow: inset 3px 0 0 var(--blue);
+    transform: translateX(3px)
 }
 
 .small-btn {
@@ -2606,7 +2668,13 @@ textarea::placeholder {
     }
 
     .desktop-nav {
-        gap: 20px
+        gap: 4px;
+        padding: 6px
+    }
+
+    .desktop-nav>a,
+    .nav-drop>a {
+        padding: 0 11px
     }
 
     .small-btn {
